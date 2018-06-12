@@ -1,0 +1,234 @@
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mi página personal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Caesar+Dressing' rel='stylesheet' type='text/css'>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<style type="text/css">
+<style type="text/css">
+
+body, html {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Caesar Dressing',Serif;
+}
+
+p {
+	font-family: monospace;
+	font-style: normal;
+	font-size: 18px;
+	width: 95%
+}
+
+#marco {
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid rgb(228,228,228);
+}
+
+#contenedor {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-wrap: wrap;
+    flex-wrap:wrap;
+}
+
+.foto {
+	height: 25%;
+	width: 19%;
+	background: rgb(255,255,255);
+	float: left;
+}
+
+.profile {
+	height: 62%;
+	width: 81%;
+	background: -webkit-linear-gradient(DeepSkyBlue, white);
+   	background: -moz-linear-gradient(DeepSkyBlue, white);
+   	background: -o-linear-gradient(DeepSkyBlue, white);
+	float: left;
+
+	border-radius: 25px 5px 25px 5px;
+    -moz-border-radius: 25px 5px 25px 5px;
+    -webkit-border-radius: 25px 5px 25px 5px;
+    border: 0px solid #000000;	
+    padding: 10px;
+}
+
+.summary {
+	height: 50%;
+	width: 45%;
+	background-color: white;
+	float: left;
+}
+
+.language {
+	height: 50%;
+	width: 50%;
+	background-color: white;
+	float: right;
+}
+
+.experience {
+	height: 100%;
+	width: 100%;
+	background: -webkit-linear-gradient(white,Silver);
+   	background: -moz-linear-gradient(white, Silver);
+   	background: -o-linear-gradient(white, Silver);
+	float: left;
+    border-radius: 10px 10px 25px 25px;
+    -moz-border-radius: 10px 10px 25px 25px;
+    -webkit-border-radius: 10px 10px 25px 25px;
+    border: 0px solid #000000;
+}
+
+.videos {
+	height: 10%;
+	background: -webkit-linear-gradient(Silver, white);
+   	background: -moz-linear-gradient(Silver, white);
+   	background: -o-linear-gradient(Silver, white);
+	clear: both;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	border-radius: 25px 25px 5px 5px;
+    -moz-border-radius: 25px 25px 5px 5px;
+    -webkit-border-radius: 25px 25px 5px 5px;
+    border: 0px solid #000000;
+}
+.author {
+	font-family: monospace;
+	font-style: italic;
+	font-size: 3em;
+}
+
+.centrado {
+	width: 200px;
+	margin: 0 auto;
+}
+
+@font-face {
+	font-family: FiraMono;
+	src: url(FiraMono-Regular.woff) format("woff"),
+	url(FiraMono-Regular.eot) format("embedded-opentype");
+}
+.cita {
+	flex-basis: 45%;
+	margin-left:2em;
+	font-style: italic;
+	font-size: 18px;
+	font-family: FiraMono, serif;
+}
+
+
+</style>
+</head>
+
+<body>
+<div class="container">
+    <nav class="navbar navbar-inverse ">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miMenu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+           </button>
+          <a class="navbar-brand" href="index.html">MOOC</a>
+        </div>
+        <div class="collapse navbar-collapse" id="miMenu">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">INICIO</a></li>
+            <li><a href="mod1_tema1.html">Mod1-Tema1</a></li> 
+            <li><a href="mod1_tema6.html">Mod1-Tema6</a></li> 
+            <li><a href="mod2.html">Mod2</a></li> 
+            <li><a href="mod3.html">Mod3</a></li> 
+            <li><a href="mod4.html">Mod4</a></li> 
+            <li><a href="mod5.html">Mod5</a></li> 
+            <li><a href="calculadora.html">Calculadora</a></li> 
+            <li><a href="puzzle.html">PUZZLE</a></li> 
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	<div id=marco>
+		<div id=contenedor>
+			<h1>Página Personal de Ramón Viñas Ávalos</h1>
+			<p> Página dedicada al actor Christoph Waltz </p>
+			<div class="foto"> 
+				<img  src="images/perfil.jpeg">
+			</div>
+			<div class="profile"> 
+				<h2> Profile </h2>
+				<h3 class="author"> Christoph Waltz </h3>
+				<p>
+				Actor austríaco y nacionalizado alemán. Ganador del premio Óscar al mejor actor de reparto en dos ocasiones por sus interpretaciones en 
+				<a href="http://www.filmaffinity.com/es/film746997.html"  title="Inglorious Basterds">Inglorious Basterds</a>
+				(2009) y en <a href="http://www.filmaffinity.com/es/film929558.html" title="Django Unchained">Django Unchained</a>, ambas películas del director Quentin Tarantino.
+				</p>
+			</div>
+			<div class="summary">
+				<h2> Summary </h2>
+				<p>
+				Christoph Waltz nació en Viena (Austria) en el año 1956. A pesar de que sus padres, Johannes Waltz y Elisabeth Urbancic, fueron decoradores, la tradición familiar en el mundo del espectáculo viene desde la generación de sus abuelos, que también fueron actores, así como sus bisabuelos, que trabajaron en el teatro.
+				Waltz estudió interpretación en el Max Reinhardt Seminar de Viena y en el Lee Strasberg Theatre Institute de Nueva York. Empezó como actor de teatro en escenarios como el Schauspielhaus Zürich, el Burgtheater y durante el Festival de Salzburgo.
+				</p>
+			</div>
+			<div class="language"> 
+				<h2> Language </h2>
+				<p>
+				 Christoph Waltz además de hablar <font color="DarkGray">alemán</font>, habla <font color="DarkGray">inglés</font> y <font color="DarkGray">francés</font> fluidamente, así como un poco de <font color="DarkGray">italiano</font>, como quedó claro en su personaje <font size="6em" color="DarkSlateGray"> <i>Hans Landa</i></font> en la película <font color="red">Inglorious Basterds</font>.
+				</p>
+			</div>
+			<div class="experience"> 
+				<h2> experience </h2>
+				<p>
+				No fue hasta 2009 cuando recibió las mejores críticas por el trabajo que desempeñó en la película Inglourious Basterds de Quentin Tarantino, adoptando el rol de Hans Landa, un Standartenführer apodado Cazador de Judíos durante la Segunda Guerra Mundial. Su trabajo en dicha película fue reconocido en el Festival de Cannes, donde recibió el premio al mejor actor y su primer premio Óscar. 
+				Tarantino reconoció la importancia de Waltz a su película diciendo lo siguiente:
+				<div class="cita">
+				"Creo que Landa es uno de los mejores personajes que he escrito y que escribiré, y Christoph lo interpretó a la perfección... Es cierto que si no hubiese encontrado a alguien tan bueno como Christoph, no podría haber hecho Inglourious Basterds."
+				</div>
+				</p>
+				
+				<div  class="centrado">
+				<object   type="image/svg+xml" 
+	                                   data="images/Cityscape-Skyline-Radial-3.svg"></object>
+	      		</div>
+	    		
+				<p>
+				En 2012 volvió a trabajar a las órdenes de Tarantino para la película Django Unchained, por la que ganó el Globo de Oro al mejor actor de reparto y su segundo Óscar en la misma categoría.3 El austriaco partía como uno de los favoritos debido a su doble triunfo en los Globos de Oro y en los Bafta. El intérprete agradeció el premio especialmente a Tarantino por atreverse con unos proyectos que otros no harían. Waltz, que le da a su personaje el sentido del humor marca de Tarantino, encarna en la película a un cazarrecompensas encargado de liberar al esclavo Django, interpretado por Jamie Foxx, y de ayudarle a reencontrarse con su esposa, cuya libertad depende de la voluntad del tirano Candie, interpretado por Leonardo Di Caprio, dueño de una de las plantaciones más grandes del Misisipi.
+				</p>
+
+			</div>
+			
+			<div class="videos"> 
+				<h2> Vídeos </h2>
+				<p> En el siguiente vídeo se puede ver una escena de la película <font color="FireBrick">Malditos Bastardos</font></p>
+				<!--<video controls preload>
+					<source src="video/malditos_bastardos.webm" type='video/webm; codecs="vp8,vorbis"' />
+					I'm sorry; your browser doesn't support HTML5 video
+				</video>-->
+				<iframe width="640" height="360"
+					src="https://www.youtube.com/embed/iTvjg1Ycc3Y" frameborder="0" allowfullscreen>
+				</iframe>
+				<p> &copy; Ramón Viñas Ávalos </p>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

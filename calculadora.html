@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buenos días, bienvenido a la calculadora de Ramón Viñas Ávalos</title>
+  <meta charset="utf-8">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/jquery-ui.min.css" rel="stylesheet">
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+</script>
+
+<!-- Estilos --> 
+<style type="text/css">
+
+.memory {
+  width: 50%;
+  height: 48px;
+  background-color: Silver;
+  float: left;
+  order-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.operation {
+  height: 100%;
+  width: 100%;
+  background: -webkit-linear-gradient(white,Silver);
+  background: -moz-linear-gradient(white, Silver);
+  background: -o-linear-gradient(white, Silver);
+  float: left;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 0px solid #000000;
+  padding: 20px;
+}
+
+.number {
+  width: 50%;
+  height: 48px;
+  float: left;
+  padding: 10px;
+  font-size: 20px;
+  background: LightBlue;
+   border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+.dropphere {
+  background: Aquamarine;
+}
+
+</style>
+
+<script type="text/javascript">
+
+  // variables y funciones de utilidad
+
+  var num, aux = 0, op = "";
+
+  function procesaCSV(){
+    var entrada = $("#num");
+    var lista = entrada.html().split(",");
+    var operandos = new Array();
+    var valido = true;
+    
+    var i=0;
+    while (valido && i<lista.length){
+      if ( isNaN(lista[i]) ){
+        operandos=null;
+        valido=false;
+      }
+      else {
+        operandos[i]=lista[i];
+      }
+      i++;
+    }
+    return operandos;
+  }
+
+  // Manejadores de eventos
+
+  $(function() {
+
+    $("#num").on("click",
+      function () {$("#num").html("");}
+    );
+
+    //---------------------------------------------------------------
+    // Moviminento de memoria
+    $("#bToM").on("click",
+        function() { $("#mem").html( $("#num").html() ); }
+    );
+
+    $("#bFromM").on("click",
+        function() { $("#num").html($("#mem").html()); }
+    );
+
+    //-----------------------------------------------------------------
+
+    $("#num").draggable({ revert:true, helper: "clone" });
+
+    $("#num").droppable( {
+       activeClass:"act",
+       drop: function( event, ui ) {
+          $(this).html( $("#mem").html() );
+       }
+    });
+    $("#num").droppable("option","activeClass","dropphere");
+
+    $("#mem").draggable({ revert:true, helper: "clone" });
+
+    $("#mem").droppable( {
+       activeClass:"act",
+       drop: function( event, ui ) {
+          $(this).html( $("#num").html() );
+       }
+    });
+    $("#mem").droppable("option","activeClass","dropphere");
+   
+
+  //---------------------------------------------------------------
+
+    $("#bcuadrado").on("click",
+       function (){
+         var num = $("#num");
+         num.html(num.html() * num.html());
+        }
+      );
+
+    $("#binver").on("click",
+      function (){
+        var num = $("#num");
+        num.html(1/num.html());
+      }
+    );
+
+    $("#bsqrt").on("click",
+      function (){
+        var num = $("#num");
+        num.html(Math.sqrt(num.html()));
+      }
+    );
+
+    $("#bpint").on("click",
+      function (){
+        var num = $("#num");
+        if (num.html() > 0) {
+          num.html(Math.floor(num.html()));
+        }
+        else {
+          num.html(-(Math.ceil(num.html())));
+        }
+      }
+    );
+
+    $("#bfac").on("click",
+      function factorial(){
+        var num = $("#num");
+        var res = 1;
+
+        for (i=1; i<=num.html(); i++) {
+          res =  res*i; 
+        }
+        num.html(res);
+      }
+    );
+
+     //---------------------------------------------------------------
+     // Operacions binarias
+
+
+    $("#bsuma").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es validos
+        if (isNaN(num.html())) {
+          num.html("NaN");
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.html();
+          op = "+";
+        }
+      }
+    );
+
+    $("#bresta").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es validos
+        if (isNaN(num.html())) {
+          num.html("NaN");
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.html();
+          op = "-";
+        }
+      }
+    );
+
+    $("#bmulti").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es validos
+        if (isNaN(num.html())) {
+          num.html("NaN");
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.html();
+          op = "*";
+        }
+      }
+    );
+
+    $("#bdiv").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es valido
+        if (isNaN(num.html())) {
+          num.html("NaN");
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.html();
+          op = "/";
+        }
+      }
+    );
+
+    $("#bpow").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es valido
+        if (isNaN(num.html())) {
+          num.html("NaN");
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.html();
+          op = "^";
+        }
+      }
+    );
+
+    $("#bcalc").on("click",
+      function () {
+        var num = $("#num");
+        if (op === "+") {
+          num.html((+aux + +num.html()));
+         }
+        else if (op === "-") {
+          num.html((+aux - +num.html()));
+        }
+        else if (op === "*"){
+          num.html((aux * num.html()));
+        }
+        else if (op === "/"){
+          num.html((aux / num.html()));
+        }
+        else if (op === "^"){
+          num.html(Math.pow(aux,num.html()));
+        }
+        aux=0;
+      }
+    );
+
+    //------------------------------------------
+    // Operaciones n-arias
+
+    $("#bsumatorio").on("click",
+      function (){
+        var num = $("#num");
+        var lista = procesaCSV();
+        if (lista===null) {
+          num.html("NaN");
+        }
+        else {
+          for (var i=0; i<lista.length; i++){
+            aux += +lista[i];
+          }
+          num.html(aux);
+        }
+        aux=0;
+      }
+    );
+
+    $("#bprpoducto").on("click",
+      function (){
+        var num = $("#num");
+        aux = 1;
+        var lista = procesaCSV();
+        if (lista===null){
+          num.html("NaN");
+        }
+        else {
+          for (var i=0; i<lista.length; i++){
+            aux = aux *(+lista[i]); 
+          }
+          num.html(aux);
+        }
+        aux=0;
+      }
+    );
+});
+    
+</script>
+</head>
+
+
+<body> 
+
+  <div class="container">
+    
+    <nav class="navbar navbar-inverse ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miMenu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+         </button>
+        <a class="navbar-brand" href="index.html">MOOC</a>
+      </div>
+      <div class="collapse navbar-collapse" id="miMenu">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">INICIO</a></li>
+          <li><a href="mod1_tema1.html">Mod1-Tema1</a></li> 
+          <li><a href="mod1_tema6.html">Mod1-Tema6</a></li> 
+          <li><a href="mod2.html">Mod2</a></li> 
+          <li><a href="mod3.html">Mod3</a></li> 
+          <li><a href="mod4.html">Mod4</a></li> 
+          <li><a href="mod5.html">Mod5</a></li> 
+          <li><a href="calculadora.html">Calculadora</a></li> 
+          <li><a href="puzzle.html">PUZZLE</a></li> 
+        </ul>
+      </div>
+    </div>
+    </nav>
+
+    <h1>Buenos días, bienvenido a la calculadora de Ramón Viñas Avalos</h1>
+    <h2>Introduce un número: </h2>
+
+    <div id="num" class="number" contenteditable="true">     
+    </div>
+          
+    <div id="mem" class="memory">
+        - sin valor -  
+    </div>
+    
+    <div id="operaciones" class="operation">
+        <p>
+          <button class="btn btn-primary btn-md" id="bToM"> ToM </button>
+          <button class="btn btn-primary btn-md" id="bFromM"> FromM </button>
+        </p>
+        <p>
+          <button class="btn btn-primary btn-md" id="bcuadrado"> x<sup>2</sup> </button>
+          <button class="btn btn-primary btn-md" id="binver"> 1/x  </button>
+          <button class="btn btn-primary btn-md" id="bsqrt"> sqrt(x)  </button>
+          <button class="btn btn-primary btn-md" id="bpint"> int(X) </button>
+          <button class="btn btn-primary btn-md" id="bfac"> n! </button>      
+        </p>
+        <p>
+          <button class="btn btn-primary btn-md" id="bsuma"> + </button>
+          <button class="btn btn-primary btn-md" id="bresta"> - </button>
+          <button class="btn btn-primary btn-md" id="bmulti"> *  </button>
+          <button class="btn btn-primary btn-md" id="bdiv"> / </button>
+          <button class="btn btn-primary btn-md" id="bpow"> x^y </button>
+          <button class="btn btn-info btn-md" id="bcalc"> = </button>
+        </p>
+        <p>
+          <button class="btn btn-primary btn-md" id="bsumatorio"> Σ n </button>
+          <button class="btn btn-primary btn-md" id="bprpoducto"> producto(n) </button>
+        </p>
+    </div>
+  </div>
+</body>
+
+</html>
+

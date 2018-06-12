@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buenos días, bienvenido a la calculadora de Ramón Viñas Ávalos</title>
+  <meta charset="utf-8">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+</script>
+
+<!-- Estilos --> 
+<style type="text/css">
+
+.operacion_unit {
+  height: 50%;
+  width: 45%;
+  float: left;
+  padding: 5px;
+}
+
+.operacion_bin {
+  height: 50%;
+  width: 50%;
+  float: right;
+  padding: 10px;
+}
+
+.boton {
+  font-size:10px;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+  background:#638cb5;
+  border:1px;
+  width:80px;
+  height:30px;
+}
+
+.operador {
+  font-size:10px;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+  background: #4169E1;
+  border:1px;
+  width:80px;
+  height:30px;
+}
+
+.longboton {
+  font-size:10px;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+  background:#638cb5;
+  border:1px;
+  width:100px;
+  height:30px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+  // variables y funciones de utilidad
+
+  var num, aux = 0, op = "";
+
+  function procesaCSV(){
+    var entrada = $("#num");
+    var lista = entrada.val().split(",");
+    var operandos = new Array();
+    var valido = true;
+    
+    var i=0;
+    while (valido && i<lista.length){
+      if ( isNaN(lista[i]) ){
+        operandos=null;
+        valido=false;
+      }
+      else {
+        operandos[i]=lista[i];
+      }
+      i++;
+    }
+    return operandos;
+  }
+
+  // Manejadores de eventos
+
+  $(function() {
+
+    $("#num").on("click",
+      function () {$("#num").val("");}
+    );
+
+    $("#bcuadrado").on("click",
+       function (){
+         var num = $("#num");
+         num.val(num.val() * num.val());
+        }
+      );
+
+    $("#binver").on("click",
+      function (){
+        var num = $("#num");
+        num.val(1/num.val());
+      }
+    );
+
+    $("#bsqrt").on("click",
+      function (){
+        var num = $("#num");
+        num.val(Math.sqrt(num.val()));
+      }
+    );
+
+    $("#bpint").on("click",
+      function (){
+        var num = $("#num");
+        if (num.val() > 0) {
+          num.val(Math.floor(num.val()));
+        }
+        else {
+          num.val(-(Math.ceil(num.val())));
+        }
+      }
+    );
+
+    $("#bfac").on("click",
+      function factorial(){
+        var num = $("#num");
+        var res = 1;
+
+        for (i=1; i<=num.val(); i++) {
+          res =  res*i; 
+        }
+        num.val(res);
+      }
+    );
+
+    //------------------------------------------
+
+
+    $("#bsuma").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es validos
+        if (isNaN(num.val())) {
+          num.val(NaN);
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.val();
+          op = "+";
+        }
+      }
+    );
+
+    $("#bresta").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es validos
+        if (isNaN(num.val())) {
+          num.val(NaN);
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.val();
+          op = "-";
+        }
+      }
+    );
+
+    $("#bmulti").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es validos
+        if (isNaN(num.val())) {
+          num.val(NaN);
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.val();
+          op = "*";
+        }
+      }
+    );
+
+    $("#bdiv").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es valido
+        if (isNaN(num.val())) {
+          num.val(NaN);
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.val();
+          op = "/";
+        }
+      }
+    );
+
+    $("#bpow").on("click",
+      function (){
+        var num = $("#num");
+        // validamos si el número es valido
+        if (isNaN(num.val())) {
+          num.val(NaN);
+        }
+        else {
+          // guardamos el primer operador y la operación
+          aux = num.val();
+          op = "^";
+        }
+      }
+    );
+
+    $("#bcalc").on("click",
+      function () {
+        var num = $("#num");
+        if (op === "+") {
+          num.val((+aux + +num.val()));
+         }
+        else if (op === "-") {
+          num.val((+aux - +num.val()));
+        }
+        else if (op === "*"){
+          num.val((aux * num.val()));
+        }
+        else if (op === "/"){
+          num.val((aux / num.val()));
+        }
+        else if (op === "^"){
+          num.val(Math.pow(aux,num.val()));
+        }
+        aux=0;
+      }
+    );
+
+    //------------------------------------------
+
+
+    $("#bsumatorio").on("click",
+      function (){
+        var num = $("#num");
+        var lista = procesaCSV();
+        if (lista===null) {
+          num.val(NaN);
+        }
+        else {
+          for (var i=0; i<lista.length; i++){
+            aux += +lista[i];
+          }
+          num.val(aux);
+        }
+        aux=0;
+      }
+    );
+
+    $("#bprpoducto").on("click",
+      function (){
+        var num = $("#num");
+        aux = 1;
+        var lista = procesaCSV();
+        if (lista===null){
+          num.val(NaN);
+        }
+        else {
+          for (var i=0; i<lista.length; i++){
+            aux = aux *(+lista[i]); 
+          }
+          num.val(aux);
+        }
+        aux=0;
+      }
+    );
+});
+    
+</script>
+</head>
+
+
+<body> 
+
+  <div class="container">
+    
+    <nav class="navbar navbar-inverse ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miMenu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+         </button>
+        <a class="navbar-brand" href="index.html">MOOC</a>
+      </div>
+      <div class="collapse navbar-collapse" id="miMenu">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">INICIO</a></li>
+          <li><a href="mod1_tema1.html">Mod1-Tema1</a></li> 
+          <li><a href="mod1_tema6.html">Mod1-Tema6</a></li> 
+          <li><a href="mod2.html">Mod2</a></li> 
+          <li><a href="mod3.html">Mod3</a></li> 
+          <li><a href="mod4.html">Mod4</a></li> 
+          <li><a href="mod5.html">Mod5</a></li> 
+          <li><a href="calculadora.html">Calculadora</a></li> 
+          <li><a href="puzzle.html">PUZZLE</a></li> 
+        </ul>
+      </div>
+    </div>
+    </nav>
+
+    <h1>Buenos días, bienvenido a la calculadora de Ramón Viñas Avalos</h1>
+
+    <div id="unitarias" class="operacion_unit">
+        
+        <p>
+          Número: 
+          <input type="text" id="num">
+        </p>
+        <p>
+          <button class="boton" id="bcuadrado"> x<sup>2</sup> </button>
+          <button class="boton" id="binver"> 1/x  </button>
+          <button class="boton" id="bsqrt"> sqrt(x)  </button>
+          <button class="boton" id="bpint"> int(X) </button>
+          <button class="boton" id="bfac"> n! </button>      
+        </p>
+        <p>
+          <button class="operador" id="bsuma"> + </button>
+          <button class="operador" id="bresta"> - </button>
+          <button class="operador" id="bmulti"> *  </button>
+          <button class="operador" id="bdiv"> / </button>
+          <button class="operador" id="bpow"> x^y </button>
+          <button class="boton" id="bcalc"> = </button>
+        </p>
+        <p>
+          <button class="longboton" id="bsumatorio"> Σ n </button>
+          <button class="longboton" id="bprpoducto"> producto(n) </button>
+        </p>
+    </div>
+  </div>
+</body>
+
+</html>
+

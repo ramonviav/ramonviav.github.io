@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+body {
+	font-family: monospace;
+	font-style: normal;
+}
+
+.titulo {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.intro {
+	margin-bottom:0.2em;
+	display:flex;
+	flex-direction: row;
+}
+.especif {
+	flex-basis: 80%;
+	font-size: 18px
+}
+.logo {
+	flex-basis: 20%;
+	margin-left:1em;
+	background-image:  url(img_html5.png);
+	background-repeat:no-repeat;
+	background-position:right top;
+}
+
+
+.problem {
+	font-size: 18px;
+}
+.list {
+	font-size: 16px;
+}
+
+.perfil {
+	margin-bottom:0.2em;
+	display:flex;
+	flex-direction: row;
+}
+.detalle {
+	flex-basis: 55%;
+	font-size: 18px
+}
+
+.ejemplo {
+	flex-basis: 45%;
+	margin-left:2em;
+	font-style: italic;
+	font-size: 16px;
+}
+
+footer {
+	background-color:LightGray;
+}

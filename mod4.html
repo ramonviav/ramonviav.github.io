@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Buenos días, bienvenido a la calculadora de Ramón Viñas Avalos</title>
+<meta charset="utf-8">
+<link href="css/bootstrap.css" rel="stylesheet">
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<!-- Estilos --> 
+<style type="text/css">
+
+.operacion_unit {
+  height: 50%;
+  width: 45%;
+  float: left;
+  padding: 5px;
+}
+
+.operacion_bin {
+  height: 50%;
+  width: 50%;
+  float: right;
+  padding: 10px;
+}
+
+.boton {
+  font-size:10px;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+  background:#638cb5;
+  border:1px;
+  width:80px;
+  height:30px;
+}
+
+.operador {
+  font-size:10px;
+  font-family:Verdana,Helvetica;
+  font-weight:bold;
+  color:white;
+  background: #4169E1;
+  border:1px;
+  width:80px;
+  height:30px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+  // Funciones comunes 
+  function inic() {
+    num = document.getElementById("num");
+    num1 = document.getElementById("num1");
+  }
+
+  // Funciones unitarias
+  function limpiarUnit() {
+    document.getElementById("num").value = "";
+  } 
+
+  function cuadrado(){
+    var num = document.getElementById("num");
+    num.value = num.value * num.value;
+  }
+
+  function inversoCuadrado(){
+    var num = document.getElementById("num");
+    num.value = 1/num.value;
+  }
+
+  function raizCuadrada(){
+    var num = document.getElementById("num");
+    num.value = Math.sqrt(num.value);
+  }
+
+  function parteEntera(){
+    var num = document.getElementById("num");
+
+    if (num.value > 0) {
+      num.value = Math.floor(num.value);
+    }
+    else {
+      num.value = -(Math.ceil(num.value));
+    }
+  }
+  
+  // Funciones Binarias
+  function limpiarBi() {
+    document.getElementById("num1").value = "";
+  }  
+
+  var num1, aux = 0, op = "";
+
+  function operacion(simbolo){
+    
+    // validamos si el número es validos
+    if (isNaN(num1.value)) {
+      num1.value = NaN;
+    }
+    else {
+      // guardamos el primer operador y la operación
+      aux = num1.value;
+      op = simbolo;
+    }
+  }
+  
+  function calcular() {
+    if (op === "+") {
+        num1.value = (+aux + +num1.value);
+    }
+    else if (op === "-") {
+        num1.value = (+aux - +num1.value);
+    }
+    else if (op === "*"){
+        num1.value = (aux * num1.value);
+    }
+    else if (op === "/"){
+        num1.value = (aux / num1.value);
+    }
+    else if (op === "^"){
+        num1.value = Math.pow(aux,num1.value);
+    }
+  }
+
+</script>
+</head>
+
+
+<body onLoad="inic()">
+
+  <div class="container">
+    <nav class="navbar navbar-inverse ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miMenu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+         </button>
+        <a class="navbar-brand" href="index.html">MOOC</a>
+      </div>
+      <div class="collapse navbar-collapse" id="miMenu">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">INICIO</a></li>
+          <li><a href="mod1_tema1.html">Mod1-Tema1</a></li> 
+          <li><a href="mod1_tema6.html">Mod1-Tema6</a></li> 
+          <li><a href="mod2.html">Mod2</a></li> 
+          <li><a href="mod3.html">Mod3</a></li> 
+          <li><a href="mod4.html">Mod4</a></li> 
+          <li><a href="mod5.html">Mod5</a></li> 
+          <li><a href="calculadora.html">Calculadora</a></li> 
+          <li><a href="puzzle.html">PUZZLE</a></li> 
+        </ul>
+      </div>
+    </div>
+    </nav>
+    <h1>Operaciones</h1>
+
+    <div id="unitarias" class="operacion_unit">
+        <h2> Operaciones Unitarias (con un solo operando) </h2>
+        <p>
+          Número: 
+          <input type="text" id="num" onclick="limpiarUnit()">
+        </p>
+        <p>
+          <button class="boton" onclick="cuadrado()"> x<sup>2</sup> </button>
+          <button class="boton" onclick="inversoCuadrado()"> 1/x  </button>
+          <button class="boton" onclick="raizCuadrada()"> sqrt(x)  </button>
+          <button class="boton" onclick="parteEntera()"> int(X) </button>
+        </p>
+    </div>
+
+    <div id="binarios" class="operacion_bin"> 
+        <h2> Operaciones Binarias (con dos operandos) </h2>
+        <p>
+          Número: 
+          <input type="text" id="num1" onclick="limpiarBi()">
+        </p>
+        <p>
+          <button class="operador" onclick="operacion('+')"> + </button>
+          <button class="operador" onclick="operacion('-')"> - </button>
+          <button class="operador" onclick="operacion('*')"> *  </button>
+          <button class="operador" onclick="operacion('/')"> / </button>
+          <button class="operador" onclick="operacion('^')"> x^y </button>
+          <button class="boton" onclick="calcular()"> = </button>
+        </p>
+        </p>
+    </div>
+  </div>
+</body>
+
+</html>
+
